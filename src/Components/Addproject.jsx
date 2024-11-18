@@ -25,14 +25,14 @@ function Addproject() {
         size='lg'
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>ADD PROJECT</Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <div className="row">
           <div className="col-6 d-flex align-items-center">
             <label>
               <input type="file" style={{display:'none'}}/>
-              <img src="./addproject.png" width={'380px'} height={'300px'} alt="" />
+              <img src="./addproject.png" width={'380px'} height={'270px'} alt="" />
             </label>
           </div>
           <div className="col-6">

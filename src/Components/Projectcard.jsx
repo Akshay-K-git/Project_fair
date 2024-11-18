@@ -26,7 +26,7 @@ function Projectcard() {
   return (
     <>
      <MDBCard onClick={toggleOpen}>
-      <MDBCardImage src='https://mdbootstrap.com/img/new/standard/nature/184.webp' position='top' alt='...' />
+      <MDBCardImage src='/homeimg.png' position='top' alt='...' />
       <MDBCardBody>
         <MDBCardTitle>Card title</MDBCardTitle>
       </MDBCardBody>

@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
+import { RiExpandUpDownLine } from "react-icons/ri";
 
 function Userprofile() {
   const [open, setOpen] = useState(false);
@@ -15,7 +16,7 @@ function Userprofile() {
         aria-controls="example-collapse-text"
         aria-expanded={open}
       >
-        click
+       <RiExpandUpDownLine />
       </Button>
       <Collapse in={open}>
         <div id="example-collapse-text text-center">

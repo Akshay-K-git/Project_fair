@@ -4,6 +4,7 @@ import {
   MDBContainer,
   MDBBtn
 } from 'mdb-react-ui-kit';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
@@ -12,9 +13,11 @@ function Footer() {
         <section className=''>
           <p className='d-flex justify-content-center align-items-center'>
             <span className='me-3'>Register for free</span>
+            <Link to={'/login'}>
             <MDBBtn type='button' outline color="light" rounded>
               Sign up!
             </MDBBtn>
+            </Link>
           </p>
         </section>
       </MDBContainer>
