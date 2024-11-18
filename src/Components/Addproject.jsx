@@ -29,8 +29,13 @@ function Addproject() {
         </Modal.Header>
         <Modal.Body>
         <div className="row">
-          <div className="col"></div>
-          <div className="col">
+          <div className="col-6 d-flex align-items-center">
+            <label>
+              <input type="file" style={{display:'none'}}/>
+              <img src="./addproject.png" width={'380px'} height={'300px'} alt="" />
+            </label>
+          </div>
+          <div className="col-6">
           <FloatingLabel controlId="floatingInput"label="Title"className="mb-3">
         <Form.Control type="text" placeholder="" />
       </FloatingLabel>
