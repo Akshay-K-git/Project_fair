@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Projectcard from '../Components/Projectcard'
+import './Home.css'
 
 function Home() {
   return (
@@ -16,11 +17,12 @@ function Home() {
           </Link>
 
         </div>
-        <div className="col-6 text-center">
+        <div className="col-6 text-center d-flex justify-content-center">
 {/* <video autoPlay loop muted width={'400px'} height={'300px'} style={{ objectFit: 'contain' }}>
-  <source src='/Untitled video - Made with Clipchamp.mp4' type='video/mp4' />
+  <source src='/Untitled video - Made with Clipchamp.mp4' type='video/mp4' /> 
   </video>           */}
           <img src={"../project_illus.jpg"} width={'400px'} height={'300px'} alt="" />
+
         </div>
       </div>
 <div className="row text-center">
