@@ -1,8 +1,119 @@
-import React from 'react'
-import { MDBInput,MDBBtn } from 'mdb-react-ui-kit';
+import React, { useState } from 'react'
+import { MDBInput} from 'mdb-react-ui-kit';
 import { Link } from 'react-router-dom';
+import { loginAPI, registerAPI } from '../../services/allAPI';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function Auth({register}) {
+function Auth({register}) {//register page(from app.jsx)
+  const [userDetails,setuserDetails]=useState({
+    username:"",
+    email:"",
+    password:""
+  })
+
+  const HandleRegister=async()=>{
+    console.log(userDetails);
+    const{username,email,password}=userDetails
+    if(!username||!email||!password){
+      toast.error("Please fill the form", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    }
+    else{
+      //API fetching
+      try {
+        const response = await registerAPI(userDetails)
+        console.log(response);
+        if(response.status==200){
+          toast.success(response.data, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+        }
+        else{
+          toast.error(response.response.data.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+        }
+
+      } catch (error) {
+        alert("API error")
+      }
+    }
+  }
+  const HandleLogin=async()=>{
+    console.log(userDetails);
+    const{email,password}=userDetails
+    if(!email||!password){
+      toast.error("fill the form", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    }
+    else{
+      try{
+        const response = await loginAPI(userDetails)
+        console.log(response);
+        if(response.status==200){
+          toast.success("Login succesfull", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+        }
+       
+        else{
+          toast.error(response.response.data, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+        }
+        
+      }
+      catch(err){
+        console.log(err);
+        
+      }
+    }
+  }
   return (
    <>
    <div className='w-100 d-flex justify-content-center align-items-center'style={{height:'700px'}}>
@@ -21,26 +132,26 @@ function Auth({register}) {
           
           register && 
           <>
-          <MDBInput className='my-3' label="username" id="typeText" type="text" />
+          <MDBInput className='my-3' onChange={e=>setuserDetails({...userDetails,username:e.target.value})} label="username" id="typeText" type="text" />
           </>
         }
-        <MDBInput className='my-3' label="Email" id="typeEmail" type="email" />
+        <MDBInput className='my-3' onChange={e=>setuserDetails({...userDetails,email:e.target.value})} label="Email" id="typeEmail" type="email" />
 
-        <MDBInput className='my-3' label="Password" id="typePassword" type="password" />
+        <MDBInput className='my-3' onChange={e=>setuserDetails({...userDetails,password:e.target.value})} label="Password" id="typePassword" type="password" />
         </div>
         {
           register?
           <div className='text-center'>
-             <button type="button" class="btn btn-primary my-3 mx-2" >SignIn</button> <br />
+             <button onClick={HandleRegister} type="button" class="btn btn-primary my-3 mx-2" >SignIn</button> <br />
 
        
-      <b>Alreadt registered ? <Link to={'/login'}>SignUp here!</Link></b>
+      <b>Already registered ? <Link to={'/login'}>SignUp here!</Link></b>
           </div>
          
       
       :
       <div className='text-center'>
-      <button type="button " class="btn btn-primary my-3 mx-2" >SignUp</button><br />
+      <button type="button " class="btn btn-primary my-3 mx-2" onClick={HandleLogin}  >SignUp</button><br />
       <b>New to here <Link to={'/register'}>Signin here!</Link></b>
       </div>
        
@@ -49,6 +160,30 @@ function Auth({register}) {
 
     </div>
    </div>
+   <ToastContainer
+position="top-center"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
+<ToastContainer
+position="top-center"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
    </div>
    </>
   )
